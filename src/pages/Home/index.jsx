@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
-import Slider from "react-slick";
+// import Slider from "react-slick";
 
 import logo from '../../assets/logo.svg'
 
-import { Card } from '../../components';
+import { Card, RestaurantCard, Modal } from '../../components';
 import { Container, Search, Logo, Wrapper, Map, Carousel, TitleCarousel } from "./styles";
 
 import restFake from '../../assets/restaurante-fake.png'
 
 const Home = () =>{ 
     const [inputValue, setInputValue] = useState('');
+    const [ModalOpen, setModalOpen] = useState(true);
 
     const settings = { // caroseul 
         dots: false, // pontinhos de baixo do slide
@@ -49,8 +50,10 @@ const Home = () =>{
                         <Card photo={restFake} title='sei la porra' />
                     </Carousel>
                 </Search>
+                <RestaurantCard />
             </Container>
             <Map/>
+            <Modal open={ModalOpen} onClose={() => setModalOpen(!ModalOpen)} />
         </Wrapper>
     )
 };
