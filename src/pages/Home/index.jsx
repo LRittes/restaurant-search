@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import logo from '../../assets/logo.svg'
 
-import { Card, RestaurantCard, Modal, Map } from '../../components';
+import { Card, RestaurantCard, Modal, Map, Loader } from '../../components';
 import { 
         Container, 
         Search, 
@@ -63,18 +63,22 @@ const Home = () =>{
                         onKeyPress={handleKeyPress}
                         />
                     </TextField>
-                    <TitleCarousel>Na sua Área</TitleCarousel>
-                    <Carousel {...settings}>
-                        {restaurants.map((restaurant) => 
-                            <Card
-                                key={restaurant.place_id}
-                                Title={restaurant.name}
-                                photo={restaurant.photos ? restaurant.photos[0].getUrl() :
-                                restFake}
-                            />
-                        )}
-                        
-                    </Carousel>
+                    {restaurants.length > 0 ? (
+                        <>
+                            <TitleCarousel>Na sua Área</TitleCarousel>
+                            <Carousel {...settings}>
+                                {restaurants.map((restaurant) => 
+                                    <Card
+                                        key={restaurant.place_id}
+                                        Title={restaurant.name}
+                                        photo={restaurant.photos ? restaurant.photos[0].getUrl() :
+                                        restFake}
+                                    />
+                                )}
+                                
+                            </Carousel>
+                        </>
+                    ): <Loader/>}
                 </Search>
                 {restaurants.map((restaurant) => (
                     <RestaurantCard 

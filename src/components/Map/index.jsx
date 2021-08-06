@@ -24,38 +24,41 @@ export  const MapContainer = (props) => {
 
     function getRestaurantDetails(placeId){
         const service = new google.maps.places.PlacesService(map);
-
+        dispath(setRestaurant(null))
+        
         const request = {
             placeId,
             fields: ['name', 'opening_hours', 'formatted_address', 'formatted_phone_number'],
         }
-
+        
         service.getDetails(request, (place, status) => {
             if(status === google.maps.places.PlacesServiceStatus.OK){
                 dispath(setRestaurant(place))
             }
         })
     }
-
+    
     function searchbyQuery(query){
         const service = new google.maps.places.PlacesService(map);
-
+        dispath(setRestaurants([]))
+        
         const request = {
             location: map.center,
             radius: '200',
             type: ['restaurant'],
             query,
         }
-
+        
         service.textSearch(request, (results, status) => {
             if(status === google.maps.places.PlacesServiceStatus.OK){
                 dispath(setRestaurants(results))
             }
         }) 
     }
-
+    
     function searchNearby(map, center){
         const service = new google.maps.places.PlacesService(map);
+        dispath(setRestaurants([]))
 
         const request = {
             location: center,
