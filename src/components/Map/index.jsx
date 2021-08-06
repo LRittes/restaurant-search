@@ -12,7 +12,7 @@ export  const MapContainer = (props) => {
 
     useEffect(() => {
         if(query){
-            searchbyQuery(query)
+            searchbyQuery(query);
         }
     },[query]);
 
