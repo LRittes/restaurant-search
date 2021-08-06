@@ -5,8 +5,8 @@ import { Restaurant, RestaurantInfo, Title, Address, RestaurantPhoto } from './s
 
 import restFake from '../../assets/restaurante-fake.png'
 
-const RestaurantCard = ({ restaurant }) => (
-    <Restaurant>
+const RestaurantCard = ({ restaurant, onClick }) => (
+    <Restaurant onClick={onClick}>
         <RestaurantInfo>
             <Title>{restaurant.name}</Title>
             <ReactStars count={5} value={restaurant.rating} isHalf edit={false} activeColor='#e7711c' />
