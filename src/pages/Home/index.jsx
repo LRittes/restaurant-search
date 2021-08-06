@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import logo from '../../assets/logo.svg'
 
-import { Card, RestaurantCard, Modal, Map, Loader } from '../../components';
+import { Card, RestaurantCard, Modal, Map, Loader, Skeleton } from '../../components';
 import { 
         Container, 
         Search, 
@@ -89,10 +89,21 @@ const Home = () =>{
             </Container>
             <Map query={query} placeId={placeId}/>
             <Modal open={ModalOpen} onClose={() => setModalOpen(!ModalOpen)} >
-                <ModalTitle>{restaurantSelected?.name}</ModalTitle>
-                <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
-                <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
-                <ModalContent>{restaurantSelected?.opening_hours?.open_now? 'ABERTO AGORA' : 'FECHADO NO MOMENTO'}</ModalContent>
+                {restaurantSelected ? (
+                    <>
+                        <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+                        <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+                        <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
+                        <ModalContent>{restaurantSelected?.opening_hours?.open_now? 'ABERTO AGORA' : 'FECHADO NO MOMENTO'}</ModalContent>
+                    </>
+                ) : (
+                    <>
+                        <Skeleton width='10px' height='10px'/>
+                        <Skeleton width='10px' height='10px'/>
+                        <Skeleton width='10px' height='10px'/>
+                        <Skeleton width='10px' height='10px'/>
+                    </>
+                )}
             </Modal>
         </Wrapper>
     )
