@@ -1,4 +1,4 @@
-# restaurant-search 
+# Busca Rango
 #### Site criado para encontrar restaurantes proximos de você 
 
 https://buscarango.netlify.app/
